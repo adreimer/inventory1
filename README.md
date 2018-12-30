@@ -1,4 +1,4 @@
-# AngularFirebaseStudentDemoApp
+# Inventory App based on AngularFirebaseStudentDemoApp
 
 A demo CRUD app for student record management system built with Angular7 and Firebase5 Real-time NoSQL Database. After installing this project, install required NPM modules kindly follow written article to setup the project.
 
