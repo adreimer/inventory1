@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./edit-student.component.css']
 })
 
-export class EditStudentComponent implements OnInit {
+export class EditInvItemComponent implements OnInit {
   editForm: FormGroup;  // Define FormGroup to student's edit form
 
   constructor(

@@ -1,4 +1,4 @@
-export interface Student {
+export interface invitem {
    $key: string;
    SKU: string;
    p_name: string;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../shared/crud.service';  // CRUD API service class
-import { Student } from './../shared/student';   // Student interface class for Data types.
+import { invitem } from './../shared/student';   // Student interface class for Data types.
 import { ToastrService } from 'ngx-toastr';      // Alert message using NGX toastr
 
 
@@ -10,13 +10,13 @@ import { ToastrService } from 'ngx-toastr';      // Alert message using NGX toas
   styleUrls: ['./students-list.component.css']
 })
 
-export class StudentsListComponent implements OnInit {
+export class InventoryListComponent implements OnInit {
   p: number = 1;                      // Fix for AOT compilation error for NGX pagination
-  Student: Student[];                 // Save students data in Student's array.
+  invitem: invitem[];                 // Save students data in Student's array.
   hideWhenNoStudent: boolean = false; // Hide students data table when no student.
   noData: boolean = false;            // Showing No Student Message, when no student in database.
   preLoader: boolean = true;          // Showing Preloader to show user data is coming for you from thre server(A tiny UX Shit)
-  
+
 
   constructor(
     public crudApi: CrudService, // Inject student CRUD services in constructor.
@@ -26,19 +26,19 @@ export class StudentsListComponent implements OnInit {
 
   ngOnInit() {
     this.dataState(); // Initialize student's list, when component is ready
-    let s = this.crudApi.GetStudentsList(); 
+    let s = this.crudApi.GetStudentsList();
     s.snapshotChanges().subscribe(data => { // Using snapshotChanges() method to retrieve list of data along with metadata($key)
-      this.Student = [];
+      this.invitem = [];
       data.forEach(item => {
-        let a = item.payload.toJSON(); 
+        let a = item.payload.toJSON();
         a['$key'] = item.key;
-        this.Student.push(a as Student);
+        this.invitem.push(a as invitem);
       })
     })
   }
 
   // Using valueChanges() method to fetch simple list of students data. It updates the state of hideWhenNoStudent, noData & preLoader variables when any changes occurs in student data list in real-time.
-  dataState() {     
+  dataState() {
     this.crudApi.GetStudentsList().valueChanges().subscribe(data => {
       this.preLoader = false;
       if(data.length <= 0){
@@ -52,10 +52,10 @@ export class StudentsListComponent implements OnInit {
   }
 
   // Method to delete student object
-  deleteStudent(student) {
+  deleteStudent(invitem) {
     if (window.confirm('Are sure you want to delete this student ?')) { // Asking from user before Deleting student data.
-      this.crudApi.DeleteStudent(student.$key) // Using Delete student API to delete student.
-      this.toastr.success(student.firstName + ' successfully deleted!'); // Alert message will show up when student successfully deleted.
+      this.crudApi.DeleteStudent(invitem.$key) // Using Delete student API to delete student.
+      this.toastr.success(invitem.p_name + ' successfully deleted!'); // Alert message will show up when student successfully deleted.
     }
   }
 

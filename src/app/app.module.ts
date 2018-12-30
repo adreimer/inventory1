@@ -2,9 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 // Components
-import { AddStudentComponent } from './add-student/add-student.component';
-import { StudentsListComponent } from './students-list/students-list.component';
-import { EditStudentComponent } from './edit-student/edit-student.component';
+import { AddInvItemComponent } from './add-student/add-student.component';
+import { InventoryListComponent } from './students-list/students-list.component';
+import { EditInvItemComponent } from './edit-student/edit-student.component';
 
 // Reactive Form Module
 import { ReactiveFormsModule } from '@angular/forms';
@@ -12,6 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 // Firebase Modules
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+// import { AngularFirestoreModule } from 'angularfire2/firestore';
+// import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 
 // Router Module
@@ -31,9 +33,9 @@ import { AppComponent } from './app.component';
 @NgModule({
   declarations: [
     AppComponent,
-    AddStudentComponent,
-    StudentsListComponent,
-    EditStudentComponent
+    AddInvItemComponent,
+    InventoryListComponent,
+    EditInvItemComponent
   ],
   imports: [
     BrowserModule,
