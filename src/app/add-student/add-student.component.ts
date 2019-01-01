@@ -2,6 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../shared/crud.service';    // CRUD services API
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'; // Reactive form services
 import { ToastrService } from 'ngx-toastr'; // Alert message using NGX toastr
+// import { NgOption, NgSelectModule } from '@ng-select/ng-select';
+// import { NgSelectComponent } from '@ng-select/ng-select';
+import { plant } from '../shared/plant';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+// import { ConfirmationComponent } from './ConfirmationComponent';
+
+
 
 
 @Component({
@@ -12,18 +19,26 @@ import { ToastrService } from 'ngx-toastr'; // Alert message using NGX toastr
 
 export class AddInvItemComponent implements OnInit {
   public studentForm: FormGroup;  // Define FormGroup to student's form
+  public plant: plant[];
+  selectedPlant = this.plant;
 
   constructor(
     public crudApi: CrudService,  // CRUD API services
     public fb: FormBuilder,       // Form Builder service for Reactive forms
-    public toastr: ToastrService  // Toastr service for alert message
+    public toastr: ToastrService,  // Toastr service for alert message
+    private modalService: NgbModal
   ) { }
 
 
   ngOnInit() {
     this.crudApi.GetStudentsList();  // Call GetStudentsList() before main form is being called
+    this.crudApi.GetPlantList().valueChanges().subscribe(data => this.plant = data);    // Call GetPlantList() for dropdown menu
     this.studenForm();              // Call student form when component is ready
   }
+
+ // showConfirm() {
+ //       this.modalService.open(ConfirmationComponent, { size: 'lg', backdrop: 'static' });
+ //   }
 
   // Reactive student form
   studenForm() {
@@ -32,7 +47,7 @@ export class AddInvItemComponent implements OnInit {
       p_size: [''],
       notes: [''],
       quantity: ['']
-    })
+    });
   }
 
   // Accessing form control using getters
@@ -59,8 +74,11 @@ export class AddInvItemComponent implements OnInit {
 
   submitStudentData() {
     this.crudApi.AddStudent(this.studentForm.value); // Submit student data using CRUD API
-    this.toastr.success(this.studentForm.controls['p_name'].value + ' successfully added!'); // Show success message when data is successfully submited
+    this.toastr.success(
+      this.studentForm.controls['p_name'].value + ' successfully added!'); // Show success message when data is successfully submited
     this.ResetForm();  // Reset form when clicked on reset button
-   };
+   }
 
 }
+
+

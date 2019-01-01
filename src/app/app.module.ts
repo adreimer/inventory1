@@ -1,10 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+// import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 // Components
 import { AddInvItemComponent } from './add-student/add-student.component';
 import { InventoryListComponent } from './students-list/students-list.component';
 import { EditInvItemComponent } from './edit-student/edit-student.component';
+//import { InventoryEditComponent } from './inventoryedit/inventoryedit.component';
+import { AddPlantRefComponent } from './add-plant/add-plant.component';
+import { PlantListComponent } from './plants-list/plants-list.component';
+import { EditPlantRefComponent } from './edit-plant/edit-plant.component';
 
 // Reactive Form Module
 import { ReactiveFormsModule } from '@angular/forms';
@@ -35,7 +41,11 @@ import { AppComponent } from './app.component';
     AppComponent,
     AddInvItemComponent,
     InventoryListComponent,
-    EditInvItemComponent
+    EditInvItemComponent,
+   // InventoryEditComponent
+    AddPlantRefComponent,
+    EditPlantRefComponent,
+    PlantListComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +54,9 @@ import { AppComponent } from './app.component';
     ReactiveFormsModule,        // Reactive forms module
     AppRoutingModule,           // Main routing module
     BrowserAnimationsModule,    // Required animations module for Toastr
+    // NgxDatatableModule,
+    NgSelectModule,
+
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-bottom-right',

@@ -24,6 +24,7 @@ body{font-size:.875rem;font-family:'Poppins', sans-serif;}
 .form-control-dark:focus{border-color:transparent;box-shadow:0 0 0 3px rgba(255, 255, 255, .25);}
 .form-control:focus{border-color:#00BCD4;box-shadow:none;}
 .form-control{font-size:14px;}
+.dropdown{font-size:18px;}
 .bg-dark{background-color:#1633FF !important;}
 .gap-right{margin-right:10px;}
 i{width:22px;text-align:center;margin-right:5px;}

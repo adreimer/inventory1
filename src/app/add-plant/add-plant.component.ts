@@ -5,13 +5,13 @@ import { ToastrService } from 'ngx-toastr'; // Alert message using NGX toastr
 
 
 @Component({
-  selector: 'app-add-student',
-  templateUrl: './add-student.component.html',
-  styleUrls: ['./add-student.component.css']
+  selector: 'app-add-plant',
+  templateUrl: './add-plant.component.html',
+  styleUrls: ['./add-plant.component.css']
 })
 
-export class AddInvItemComponent implements OnInit {
-  public studentForm: FormGroup;  // Define FormGroup to student's form
+export class AddPlantRefComponent implements OnInit {
+  public plantForm: FormGroup;  // Define FormGroup to student's form
 
   constructor(
     public crudApi: CrudService,  // CRUD API services
@@ -21,46 +21,36 @@ export class AddInvItemComponent implements OnInit {
 
 
   ngOnInit() {
-    this.crudApi.GetStudentsList();  // Call GetStudentsList() before main form is being called
-    this.studenForm();              // Call student form when component is ready
+    this.crudApi.GetPlantList();  // Call GetStudentsList() before main form is being called
+    this.planForm();              // Call student form when component is ready
   }
 
   // Reactive student form
-  studenForm() {
-    this.studentForm = this.fb.group({
+  planForm() {
+    this.plantForm = this.fb.group({
       p_name: ['', [Validators.required, Validators.minLength(2)]],
-      p_size: [''],
-      notes: [''],
-      quantity: ['']
-    })
+      psku: [''],
+    });
   }
 
   // Accessing form control using getters
   get p_name() {
-    return this.studentForm.get('p_name');
+    return this.plantForm.get('p_name');
   }
 
-  get p_size() {
-    return this.studentForm.get('p_size');
-  }
-
-  get notes() {
-    return this.studentForm.get('notes');
-  }
-
-  get quantity() {
-    return this.studentForm.get('quantity');
+  get psku() {
+    return this.plantForm.get('psku');
   }
 
   // Reset student form's values
   ResetForm() {
-    this.studentForm.reset();
+    this.plantForm.reset();
   }
 
-  submitStudentData() {
-    this.crudApi.AddStudent(this.studentForm.value); // Submit student data using CRUD API
-    this.toastr.success(this.studentForm.controls['p_name'].value + ' successfully added!'); // Show success message when data is successfully submited
+  submitPlantData() {
+    this.crudApi.AddPlant(this.plantForm.value); // Submit student data using CRUD API
+    this.toastr.success(this.plantForm.controls['p_name'].value + ' successfully added!'); // Show success message when data is successfully submited
     this.ResetForm();  // Reset form when clicked on reset button
-   };
+   }
 
 }

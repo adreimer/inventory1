@@ -9,9 +9,12 @@
       <div class="row">
         <div class="col-md-12 mb-3">
           <label>Plant Name</label>
-          <input type="text" formControlName="p_name" class="form-control" required>
-          <p *ngIf="p_name.touched && p_name.invalid" class="error"><sup>*</sup>Please enter atleast first name</p>
-          <p *ngIf="p_name.errors?.minlength" class="error"><sup>*</sup>Name shouldn't be less than 2 words</p>
+          <ng-select [items]="plant"
+                     bindValue="p_name"
+                     [(ngModel)]="selectedperson"
+                     bindLabel="p_name"
+                     formControlName="p_name">
+        </ng-select>
         </div>
         <div class="col-md-12 mb-3">
           <label>Plant Size</label>
@@ -24,6 +27,7 @@
           <input type="text" formControlName="notes" class="form-control" required>
           <p *ngIf="notes.touched && notes.invalid" class="error"><sup>*</sup>Please provide email</p>
           <p *ngIf="notes.errors?.pattern" class="error"><sup>*</sup>Please enter correct email</p>
+        </div>
         </div>
         <div class="col-md-12 mb-3">
           <label>Quantity</label>
@@ -39,5 +43,4 @@
         <button type="submit" class="btn btn-success" [disabled]="!studentForm.valid">Add Item</button>
       </div>
     </div>
-  </div>
 </form><!-- Student form ends-->

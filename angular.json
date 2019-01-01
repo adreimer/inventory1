@@ -29,6 +29,7 @@
               "node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-regular.css",
               "node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-brands.css",
               "node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-solid.css",
+              "node_modules/@ng-select/ng-select/themes/material.theme.css",
               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []

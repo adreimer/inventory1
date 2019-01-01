@@ -1,0 +1,55 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Plant List</h1>
+  <!-- It won't show if there is no student data -->
+  <a routerLink="/register-plant" class="btn btn-success" *ngIf="hideWhenNoStudent">
+    <i class="fas fa-plus custom-fa-plus"></i>
+    Add Plant ID
+  </a>
+</div>
+
+<div class="pricing-header mx-auto">
+
+  <!-- Preloader shows before the data loads-->
+  <div class="no-data text-center" *ngIf="preLoader">
+    <img src="assets/preloader.gif" class="preloader-icon" alt="No plant">
+  </div>
+
+  <!-- No data shows when their is no student data available -->
+  <div class="no-data text-center" *ngIf="noData">
+    <img src="assets/no-student.svg" class="nodata-msg" alt="No plant">
+    <p class="nodata-msg">No plants added yet!</p>
+    <a routerLink="/register-plant" class="btn btn-success">
+      <i class="fas fa-plus custom-fa-plus"></i>
+      Add Plant
+    </a>
+  </div>
+
+  <!-- Showing invitem data -->
+  <div class="table-responsive" *ngIf="hideWhenNoStudent">
+    <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
+      <thead>
+        <tr>
+          <!-- <th scope="col">Plant ID</th> -->
+          <th scope="col">Plant Name</th>
+          <th scope="col">PSKU</th>
+          <th class="text-center" scope="col">Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- *ngFor loop iterates over Student array and fetch the student's data -->
+        <!-- paginate pipe will add pagination in student's list, it won't show if items are less then 7 -->
+        <tr *ngFor="let plant of plant| paginate: { itemsPerPage: 20, currentPage: p }; let i = index;">
+          <!-- ><th scope="row">{{plant.$key}}</th> -->
+          <td>{{plant.psku}}</td>
+          <td>{{plant.p_name}}</td>
+          <td class="text-center action-block">
+            <!-- routerLink="/edit-plant/{{plant.$key}}" is refered to { path: 'edit-plant/:id', component: EditPlantComponent } in app-routing.moudles.ts -->
+            <i class="far fa-edit" routerLink="/edit-plant/{{plant.$key}}"></i>
+            <i class="far fa-trash-alt" (click)="deletePlant(plant)"></i></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- Pagination -->
+  <pagination-controls (pageChange)="p = $event" autoHide="true" responsive="true"></pagination-controls>
+</div>
